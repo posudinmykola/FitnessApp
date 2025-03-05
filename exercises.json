@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "title": "Push-Up",
+        "description": "Eine klassische Übung für die Brust.",
+        "image": "pushup.jpg",
+        "repetitions": 4,
+        "sets": 4,
+        "level": "einfach"
+    },
+    {
+        "id": 2,
+        "title": "Squat",
+        "description": "Eine grundlegende Übung für die Beine.",
+        "image": "squat.jpg",
+        "repetitions": 2,
+        "sets": 3,
+        "level": "einfach"
+    },
+    {
+        "id": 3,
+        "title": "Bench Press",
+        "description": "Eine Übung für die Brust mit Gewichten.",
+        "image": "benchpress.jpg",
+        "repetitions": 2,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 4,
+        "title": "Deadlift",
+        "description": "Eine Übung für den gesamten Körper.",
+        "image": "deadlift.jpg",
+        "repetitions": 2,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 5,
+        "title": "Pull-Up",
+        "description": "Eine anspruchsvolle Übung für den Rücken.",
+        "image": "pullup.jpg",
+        "repetitions": 2,
+        "sets": 3,
+        "level": "schwer"
+    },
+    {
+        "id": 6,
+        "title": "Clean and Jerk",
+        "description": "Eine komplexe Übung für Kraft und Technik.",
+        "image": "cleanandjerk.jpg",
+        "repetitions": 2,
+        "sets": 3,
+        "level": "schwer"
+    }
+]
