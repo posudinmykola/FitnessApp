@@ -171,19 +171,22 @@
         }
         .btn {
             width: 150px; /* Einheitliche Breite für alle Buttons */
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container">
         <h1 class="text-center">Übung starten</h1>
         <h2 id="exercise-title" class="text-center"></h2>
-        <div id="exercise-image"></div>
         <div id="exercise-description" class="text-center"></div>
+        <div id="exercise-image"></div>
  
-        </div>
+        
         <div class="text-center">
             <div id="timer" class="display-4">0:00</div>
+        </div>
+        <div class="d-flex justify-content-center gap-4 mt-4">
             <button id="start-button" class="btn btn-success mt-4" onclick="startTimer()">Start</button>
             <button id="stop-button" class="btn btn-warning mt-4" style="display: none;" onclick="stopTimer()">Stop</button>
             <button id="cancel-button" class="btn btn-danger mt-4" onclick="cancelExercise()">Abbrechen</button>
