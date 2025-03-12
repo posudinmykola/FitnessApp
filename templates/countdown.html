@@ -6,10 +6,14 @@
     <title>Übung starten</title>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
     <script id="exercises-data" type="application/json">
         {{ exercises | tojson | safe }}
     </script>
+   
     <script>
+        const exerciseTime = 45;
         let currentExerciseIndex = 0;
         let currentSet = 1;
         let currentRepetition = 1;
@@ -53,32 +57,37 @@
         function startTimer() {
             if (!isRunning) {
                 isRunning = true;
-                let timeElapsed = 0;
+                let timeElapsed = exerciseTime;
                 let audio = new Audio("/static/mp3/countdown10.mp3");
                 timer = setInterval(() => {
-                    timeElapsed++;
+                    timeElapsed--;
                     document.getElementById('timer').innerText = formatTime(timeElapsed);
-                    if (timeElapsed == 34) {
+                    if (timeElapsed == 10) {
                         audio.play().then(() => console.log("Sound erlaubt!"))
                         .catch(error => console.error("Autoplay blockiert:", error));
                     }
 
-                    if (timeElapsed == 45) {
+                    if (timeElapsed == 1) {
                         audio.pause();
                         audio.currentTime = 0;
                     }
 
-                    if (timeElapsed == 50) {
-                        audio.play();
+                    if (timeElapsed == 0) {
+                        // audio.play();
+                        clearInterval(timer); // Остановить текущий таймер
+                        isRunning = false;
+                        startPauseTimer();
                     }
                     
-                    if (timeElapsed == 60) {
-                        audio.pause();
-                        audio.currentTime = 0;
-                        timeElapsed = 0;
-                        startNextExercise()
-                    }
-                }, 1000);
+                //     if (timeElapsed == 60) {
+                //         audio.pause();
+                //         audio.currentTime = 0;
+                //         timeElapsed = 0;
+                //         startNextExercise()
+                //     }
+                // 
+            }, 1000);
+
                 document.getElementById('start-button').style.display = 'none';
                 document.getElementById('stop-button').style.display = 'block';
             }
@@ -104,7 +113,44 @@
                 }
             }
         }
+        
+        function startPauseTimer() {
+            console.log("Запущен startPauseTimer()");
 
+            let pauseModalElement = document.getElementById('pauseModal');
+            
+            // Проверяем, найден ли модальный элемент
+            if (!pauseModalElement) {
+                console.error("Ошибка: #pauseModal не найден в HTML!");
+                return;
+            }
+
+            let pauseModal = new bootstrap.Modal(pauseModalElement, { keyboard: false });
+            pauseModal.show(); // Открываем попап
+
+            let pauseTime = 10;
+            let pauseTimerElement = document.getElementById('pause-timer');
+            let audio = new Audio("/static/mp3/countdown10.mp3");
+
+            // Включаем аудио
+            audio.play().catch(error => console.error("Ошибка: Autoplay заблокирован", error));
+
+            let pauseInterval = setInterval(() => {
+                pauseTime--;
+                pauseTimerElement.innerText = pauseTime;
+
+                if (pauseTime <= 0) {
+                    clearInterval(pauseInterval);
+                    audio.pause();
+                    audio.currentTime = 0;
+                    pauseModal.hide(); // Закрываем попап
+                    console.log("Попап закрыт. Запуск следующего упражнения...");
+                    startNextExercise(); // Запускаем следующую тренировку
+                }
+            }, 1000);
+        }
+
+    
         function formatTime(seconds) {
             const minutes = Math.floor(seconds / 60);
             const secs = seconds % 60;
@@ -129,7 +175,7 @@
         function cancelExercise() {
             clearInterval(timer);
             isRunning = false;
-            window.location.href = "{{ url_for('level', level='einfach') }}"; // Zurück zur Übungsübersicht
+            window.location.href = "{{ url_for('level', level='mittel') }}"; // Zurück zur Übungsübersicht
         }
 
         function startNextExercise() {
@@ -175,8 +221,22 @@
         }
     </style>
 </head>
+<div class="modal fade" id="pauseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kurze Pause</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h2 id="pause-timer">10</h2>
+                <p>Bereite dich auf die nächste Übung vor...</p>
+            </div>
+        </div>
+    </div>
+</div>
 <body>
-    <div class="container">
+    <div class="container mt-3">
         <h1 class="text-center">Übung starten</h1>
         <h2 id="exercise-title" class="text-center"></h2>
         <div id="exercise-description" class="text-center"></div>
