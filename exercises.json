@@ -52,5 +52,95 @@
         "repetitions": 2,
         "sets": 3,
         "level": "schwer"
+    },
+    {
+        "id": 7,
+        "title": "High knee taps",
+        "description": "Im Stehen Knie abwechselnd explosiv zur Brust nehmen, Arme im Rhythmus mitbewegen.",
+        "image": "Medien.jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 8,
+        "title": "Mountain climbers",
+        "description": "In Liegestützposition abwechselnd Knie zur Brust ziehen.",
+        "image": "Medien (1).jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 9,
+        "title": "Bicycles",
+        "description": "Im Liegen Beine radfahrend bewegen, dabei Ellbogen zum gegenüberliegenden Knie führen.",
+        "image": "Medien (2).jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 10,
+        "title": "V-Ups",
+        "description": "Im Liegen gleichzeitig Beine und Oberkörper anheben, Hände zu den Füßen führen.",
+        "image": "VUps.jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 11,
+        "title": "Plank knees to elbow",
+        "description": "In Plank-Position abwechselnd das Knie zum gegenüberliegenden Ellbogen ziehen.",
+        "image": "Medien (8).jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 12,
+        "title": "Toe touches",
+        "description": "Auf dem Rücken liegend, Beine gestreckt nach oben, abwechselnd mit den Händen die Zehen berühren.",
+        "image": "ToeTouches.jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 13,
+        "title": "Low plank to high plank",
+        "description": "Von der Unterarm-Plank-Position in die Hand-Plank-Position wechseln, abwechselnd.",
+        "image": "LowPlankToHighPlank.jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 14,
+        "title": "Burpees",
+        "description": "In die Hocke gehen, Hände zum Boden, in die Liegestütz-Position springen, Liegestütz machen, Beine zurück zu den Händen hochspringen.",
+        "image": "Burpees.jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 15,
+        "title": "Plank alternating toe taps",
+        "description": "In Plank-Position abwechselnd ein Bein zur Seite heben und den Zeh seitlich auf den Boden tippen.",
+        "image": "PlankAlternatingToeTaps.jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
+    },
+    {
+        "id": 16,
+        "title": "Side plank hold",
+        "description": "Seitlich auf einem Unterarm stützen, Körper in einer geraden Linie halten.",
+        "image": "Medien (16).jpg",
+        "repetitions": 20,
+        "sets": 3,
+        "level": "mittel"
     }
 ]

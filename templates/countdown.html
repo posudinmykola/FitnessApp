@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Übung starten</title>
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <script id="exercises-data" type="application/json">
         {{ exercises | tojson | safe }}
@@ -32,7 +33,19 @@
         function startExercise() {
             const exercise = exercises[currentExerciseIndex];
             document.getElementById('exercise-title').innerText = exercise.title;
-            updateRepetitionCircles();
+            document.getElementById('exercise-description').innerText = exercise.description;
+ 
+            let exerciseImage = document.createElement('img');
+            exerciseImage.src = `/static/images/${exercise.image}`;
+            exerciseImage.alt = exercise.title;
+            exerciseImage.style.width = "300px";
+            exerciseImage.style.display = "block";
+            exerciseImage.style.margin = "20px auto";
+ 
+            let imageContainer = document.getElementById('exercise-image');
+            imageContainer.innerHTML = "";
+            imageContainer.appendChild(exerciseImage);
+ 
             document.getElementById('start-button').style.display = 'block';
             document.getElementById('cancel-button').style.display = 'block';
         }
@@ -41,9 +54,30 @@
             if (!isRunning) {
                 isRunning = true;
                 let timeElapsed = 0;
+                let audio = new Audio("/static/mp3/countdown10.mp3");
                 timer = setInterval(() => {
                     timeElapsed++;
                     document.getElementById('timer').innerText = formatTime(timeElapsed);
+                    if (timeElapsed == 34) {
+                        audio.play().then(() => console.log("Sound erlaubt!"))
+                        .catch(error => console.error("Autoplay blockiert:", error));
+                    }
+
+                    if (timeElapsed == 45) {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+
+                    if (timeElapsed == 50) {
+                        audio.play();
+                    }
+                    
+                    if (timeElapsed == 60) {
+                        audio.pause();
+                        audio.currentTime = 0;
+                        timeElapsed = 0;
+                        startNextExercise()
+                    }
                 }, 1000);
                 document.getElementById('start-button').style.display = 'none';
                 document.getElementById('stop-button').style.display = 'block';
@@ -144,6 +178,10 @@
     <div class="container mt-5">
         <h1 class="text-center">Übung starten</h1>
         <h2 id="exercise-title" class="text-center"></h2>
+        <div id="exercise-image"></div>
+        <div id="exercise-description" class="text-center"></div>
+ 
+        </div>
         <div class="text-center">
             <div id="timer" class="display-4">0:00</div>
             <button id="start-button" class="btn btn-success mt-4" onclick="startTimer()">Start</button>
@@ -151,10 +189,10 @@
             <button id="cancel-button" class="btn btn-danger mt-4" onclick="cancelExercise()">Abbrechen</button>
             <button id="next-exercise-button" class="btn btn-primary mt-4" style="display: none;" onclick="startNextExercise()">Nächste Übung starten</button>
         </div>
-        <div class="text-center mt-4">
+        <!--<div class="text-center mt-4">
             <h3>Wiederholungen</h3>
             <div id="repetition-circles" class="text-center"></div>
-        </div>
+        </div>-->
     </div>
 </body>
 </html>
